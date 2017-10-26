@@ -1,8 +1,11 @@
 package com.crud.financeiro.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -35,7 +38,7 @@ public class TitulosController {
 	private TitulosService titulosService;
 	
 	@RequestMapping(value = "/novo")
-	public ModelAndView index(Titulo titulo) {
+	public ModelAndView novo(Titulo titulo) {
 		ModelAndView mv = new ModelAndView(INDEX);
 		mv.addObject("listaDeEntidades", entidades.findAll());
 		mv.addObject("todosOsTipos", Tipo.values());
@@ -45,14 +48,14 @@ public class TitulosController {
 	}
 	
     @RequestMapping(value = "/novo" , method = RequestMethod.POST)
-	public ModelAndView salvar(Titulo titulo /*BindingResult result*/, RedirectAttributes attributes) {
+	public ModelAndView salvar(@Valid Titulo titulo, BindingResult result, RedirectAttributes attributes) {
 		
-		/*if(result.hasErrors()){
+		if(result.hasErrors()){
 			System.out.println("Teve algum erro! " + result.getAllErrors());
 			
 			//TODO: mostrar mensagem de erro
-			return index(titulo);
-		}*/
+			return novo(titulo);
+		}
 		
 		if (!StringUtils.isEmpty(titulo.getCodigo())) {
 			attributes.addFlashAttribute("mensagem", "Titulo alterado com sucesso");
@@ -65,10 +68,20 @@ public class TitulosController {
 		return new ModelAndView("redirect:/titulos/novo");
 	}
 	
-/*	@RequestMapping
+    @RequestMapping
 	public ModelAndView pesquisar(Titulo titulo) {
 		ModelAndView mv = new ModelAndView("titulo/PesquisarTitulo");
-        mv.addObject("titulos", titulos.porNome(titulos.getNome())); //VERIFICAR
+		
+		mv.addObject("listaEntidades", entidades.findAll());
+		
+		String descricao = titulo.getDescricao() == null ? "%" : titulo.getDescricao();
+		
+        mv.addObject("titulos", titulos.filtrados(descricao, titulo.getEntidade()));
+        
+        mv.addObject("tiposDePagamentos", tiposDePagamentos.findAll());
+        
+       // mv.addObject("titulos", titulos.filtrados(descricao, titulo.getTipoDePagamento()));
+        
         return mv;
-	}*/
+	}
 }

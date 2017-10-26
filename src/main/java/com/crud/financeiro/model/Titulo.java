@@ -13,8 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -32,14 +32,17 @@ public class Titulo {
 	
 	private String descricao;
 
+	@NotNull
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Column(name = "data_de_validade")
 	private Date dataDeValidade;
 
+	@NotNull
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Column(name = "data_do_pagamento")
 	private Date dataDoPagamento;
 
+	@NotNull
 	private BigDecimal valor;
 
 	@Column(name = "valor_pago")
@@ -52,7 +55,7 @@ public class Titulo {
 	@JoinColumn(name = "entidadeId")
 	private Entidade entidade;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "tipo_pagamento_id")
 	private TipoDePagamento tipoDePagamento;
 	

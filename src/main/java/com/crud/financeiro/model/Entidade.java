@@ -10,8 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
@@ -22,7 +22,7 @@ public class Entidade {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 
-	
+	@NotBlank
 	@Column(length = 60)
 	private String nome;
 
@@ -47,13 +47,11 @@ public class Entidade {
 	@Column(length = 20)
 	private String telefone;
 
-	@NotBlank
+	@Email
 	@Column(length = 100, name = "e_mail")
 	private String email;
 
-	@OneToMany(mappedBy = "entidade", orphanRemoval = true) // orphanRemoval - Não pode conter
-															// titulo sem
-															// Entidade
+	@OneToMany(mappedBy = "entidade", orphanRemoval = true) // orphanRemoval - Não pode conter titulo sem Entidade
 	private List<Titulo> titulos = new ArrayList<>();
 
 	public Long getCodigo() {

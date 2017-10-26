@@ -1,9 +1,13 @@
 package com.crud.financeiro.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +19,9 @@ public class TipoDePagamento {
 	private Long codigo;
 	
 	private String descricao;
+	
+	@OneToMany(mappedBy = "tipoDePagamento")
+	private List<Titulo> titulos = new ArrayList<>();
 
 	public Long getCodigo() {
 		return codigo;
@@ -31,6 +38,13 @@ public class TipoDePagamento {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	
+
+	public List<Titulo> getTitulos() {
+		return titulos;
+	}
+
+	public void setTitulos(List<Titulo> titulos) {
+		this.titulos = titulos;
+	}	
 	
 }

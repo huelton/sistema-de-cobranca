@@ -8,5 +8,4 @@ import com.crud.financeiro.model.TipoDePagamento;
 @Repository
 public interface TiposDePagamentos extends JpaRepository<TipoDePagamento, Long>  {
 
-	
 }
