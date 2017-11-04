@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.crud.financeiro.model.Entidade;
-import com.crud.financeiro.model.TipoDePagamento;
 import com.crud.financeiro.model.Titulo;
 
 @Repository

@@ -32,11 +32,15 @@ $(document).ready(function(){
 });
 
 $('.js-componente-data').pickadate({
-    monthsFull: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+   
+	selectMonths: true, // Creates a dropdown to control month
+	selectYears: 30, // Creates a dropdown of 15 years to control year,
+   
+	monthsFull: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
     monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
     weekdaysFull: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabádo'],
     weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
-    weekdaysLetter: [ 'D', 'S', 'T', 'Q', 'Q', 'S', 'S' ],
+    weekdaysLetter: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S' ],
     today: 'Hoje',
     clear: 'Limpar',
     close: 'Pronto',
@@ -44,8 +48,7 @@ $('.js-componente-data').pickadate({
     labelMonthPrev: 'Mês anterior',
     labelMonthSelect: 'Selecione um mês',
     labelYearSelect: 'Selecione um ano',
-    selectMonths: true,
-    selectYears: 15,
+
     format: 'dd/mm/yyyy',
     formatsubmit: 'dd/mm/yyyy'
 });
